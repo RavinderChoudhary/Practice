@@ -1,0 +1,38 @@
+ListNode* rotateRight(ListNode* head, int k) {
+     if(!head)
+         return head;
+    int size = 0;
+    ListNode *temp = head;
+    while(temp)
+    {
+        size++;
+        temp = temp -> next;
+    }
+    int rotate = k % size;
+    if(rotate == 0)
+        return head;
+    temp = head;
+    vector<int> back_vec, front_vec;
+    for(int i = 1; i <= size-rotate; i++)
+    {
+        front_vec.push_back(temp -> val);
+        temp = temp -> next;
+    }
+    while(temp)
+    {
+        back_vec.push_back(temp -> val);
+        temp = temp -> next;
+    }
+    temp = head;
+    for(int i = 0; i < back_vec.size(); i++)
+    {
+        temp -> val = back_vec[i];
+        temp = temp -> next;
+    }
+    for(int i = 0; i < front_vec.size(); i++)
+    {
+        temp -> val = front_vec[i];
+        temp = temp -> next;
+    }
+    return head;
+}
