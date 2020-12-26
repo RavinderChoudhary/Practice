@@ -1,0 +1,12 @@
+vector<pair<int,int>> vec(n);    
+    for(int i=0;i<n;i++)                
+    { 
+        vec[i].first=arr[i]; 
+        vec[i].second=i; 
+    } 
+  
+    // Sort the vector w.r.t the first 
+    // element of pair 
+    sort(vec.begin(),vec.end());
+    sort(input , input + n , [](Edge a,Edge b) -> bool { return a.wt < b.wt; });
+
