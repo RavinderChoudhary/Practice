@@ -1,0 +1,32 @@
+string multiply(string num1, string num2) {
+        int n = num1.size(), m = num2.size();
+        int carry;
+        vector<int>result(n + m, 0);
+        string output;
+        int pos_1 = 0;
+        
+        for(int i = m - 1; i >= 0; i--) {
+            int carry = 0;
+            int pos_2 = pos_1;
+            for(int j = n - 1; j >= 0; j--) {
+                int sum = (num1[j] - '0') * (num2[i] - '0');
+                int val = result[pos_2] + sum + carry; 
+                result[pos_2] = (val) % 10;
+                carry = val / 10;
+                pos_2++;
+            }
+            result[pos_2] = carry;
+            pos_1++;
+        }
+        
+        int pos = n + m - 1;
+        
+        while(pos >= 0 && result[pos] == 0)
+            pos--;
+        
+        for(int i = pos; i >= 0; i--) {
+            output.push_back(result[i] + '0');
+        }
+        
+        return output.size() == 0 ? "0" : output;
+ }
