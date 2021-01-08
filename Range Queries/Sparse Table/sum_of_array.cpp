@@ -8,13 +8,13 @@ long long table[N][k + 1];
 
 void buildSparseTable(vector<int> arr, int n) 
 { 
-	for (int i = 0; i < n; i++) 
-		table[i][0] = arr[i]; 
+	for (int j = 0; j < n; j++) 
+		table[0][j] = arr[j]; 
 
-	for (int j = 1; j <= k; j++) {
-		for (int i = 0; i <= n - (1 << j); i++) {
-		    int window_size = 1 << (j - 1);
-			table[i][j] = table[i][j - 1] + table[i + window_size][j - 1]; 
+	for (int ws = 1; ws <= k; ws++) {
+		for (int j = 0; j <= n - (1 << ws); j++) {
+		    int window_size = 1 << (ws - 1);
+			table[ws][j] = table[ws-1][j] + table[ws - 1][j + window_size]; 
 		}
 	}
 } 
@@ -22,10 +22,10 @@ void buildSparseTable(vector<int> arr, int n)
 long long query(int L, int R) 
 { 
 	long long answer = 0; 
-	for (int j = k; j >= 0; j--) { 
-		if (L + pow(2,j) - 1 <= R) { 
-			answer = answer + table[L][j]; 
-			L += 1 << j;   
+	for (int i = k; i >= 0; i--) { 
+		if (L + pow(2,i) - 1 <= R) { 
+			answer = answer + table[i][L]; 
+			L += 1 << i;   
 		} 
 	} 
 	return answer; 
@@ -44,3 +44,4 @@ int main()
 
 	return 0; 
 } 
+
