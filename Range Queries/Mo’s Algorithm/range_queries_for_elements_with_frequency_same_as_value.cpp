@@ -1,3 +1,5 @@
+//https://www.geeksforgeeks.org/array-range-queries-elements-frequency-value/
+
 #include <bits/stdc++.h> 
 using namespace std; 
 
