@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/maximum-occurrence-given-range/
+
 #include <bits/stdc++.h>
 using namespace std;
 void segmentTree(vector<int> &tree,vector<int> arr,int si,int li,int index){
